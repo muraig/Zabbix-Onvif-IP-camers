@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>5.0</version>
+    <date>2020-08-31T03:53:48Z</date>
+    <groups>
+        <group>
+            <name>Security Cameras - AllCamers</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Security Cameras - AllCamers</template>
+            <name>Security Cameras - AllCamers</name>
+            <description>Based of SNMP v2 Generic</description>
+            <templates>
+                <template>
+                    <name>Template App HTTP Service</name>
+                </template>
+                <template>
+                    <name>Template Module ICMP Ping</name>
+                </template>
+            </templates>
+            <groups>
+                <group>
+                    <name>Security Cameras - AllCamers</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>General</name>
+                </application>
+                <application>
+                    <name>ONVIF</name>
+                </application>
+                <application>
+                    <name>Video Stream</name>
+                </application>
+            </applications>
+            <items>
+                <item>
+                    <name>HardwareId</name>
+                    <type>EXTERNAL</type>
+                    <key>ipcam_onvif[{HOST.CONN}, {$HOST.PORT}, GetDeviceInformation, {$HTTP_PASS},HardwareId ]</key>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <description>HardwareId устройства</description>
+                    <inventory_link>HARDWARE</inventory_link>
+                    <applications>
+                        <application>
+                            <name>ONVIF</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.HardwareId</params>
+                        </step>
+                        <step>
+                            <type>NOT_MATCHES_REGEX</type>
+                            <params>XPath set is empty</params>
+                        </step>
+                        <step>
+                            <type>NOT_MATCHES_REGEX</type>
+                            <params>-:1: parser error</params>
+                        </step>
+                        <step>
+                            <type>NOT_MATCHES_REGEX</type>
+                            <params>-:2: parser error</params>
+                        </step>
+                        <step>
+                            <type>NOT_MATCHES_REGEX</type>
+                            <params>Traceback</params>
+                        </step>
+                        <step>
+                            <type>NOT_MATCHES_REGEX</type>
+                            <params>False</params>
+                        </step>
+                    </preprocessing>
+                </item>
+                <item>
+                    <name>Model</name>
+                    <type>EXTERNAL</type>
+                    <key>ipcam_onvif[{HOST.CONN}, {$HOST.PORT}, GetDeviceInformation, {$HTTP_PASS}]</key>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <description>Модель устройства</description>
+                    <inventory_link>MODEL</inventory_link>
+                    <applications>
+                        <application>
+                            <name>General</name>
+                        </application>
+                        <application>
+                            <name>ONVIF</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.Model</params>
+                        </step>
+                        <step>
+                            <type>NOT_MATCHES_REGEX</type>
+                            <params>XPath set is empty</params>
+                        </step>
+                        <step>
+                            <type>NOT_MATCHES_REGEX</type>
+                            <params>-:1: parser error</params>
+                        </step>
+                        <step>
+                            <type>NOT_MATCHES_REGEX</type>
+                            <params>-:2: parser error</params>
+                        </step>
+                        <step>
+                            <type>NOT_MATCHES_REGEX</type>
+                            <params>Traceback</params>
+                        </step>
+                        <step>
+                            <type>NOT_MATCHES_REGEX</type>
+                            <params>False</params>
+                        </step>
+                    </preprocessing>
+                </item>
+                <item>
+                    <name>Manufacturer</name>
+                    <type>EXTERNAL</type>
+                    <key>ipcam_onvif[{HOST.CONN}, {$HOST.PORT},GetDeviceInformation, {$HTTP_PASS}]</key>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <description>Производитель устройства</description>
+                    <inventory_link>CHASSIS</inventory_link>
+                    <applications>
+                        <application>
+                            <name>ONVIF</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.Manufacturer</params>
+                        </step>
+                        <step>
+                            <type>NOT_MATCHES_REGEX</type>
+                            <params>XPath set is empty</params>
+                        </step>
+                        <step>
+                            <type>NOT_MATCHES_REGEX</type>
+                            <params>-:1: parser error</params>
+                        </step>
+                        <step>
+                            <type>NOT_MATCHES_REGEX</type>
+                            <params>-:2: parser error</params>
+                        </step>
+                        <step>
+                            <type>NOT_MATCHES_REGEX</type>
+                            <params>Traceback</params>
+                        </step>
+                        <step>
+                            <type>NOT_MATCHES_REGEX</type>
+                            <params>False</params>
+                        </step>
+                    </preprocessing>
+                </item>
+                <item>
+                    <name>SerNumber</name>
+                    <type>EXTERNAL</type>
+                    <key>ipcam_onvif[{HOST.CONN}, {$HOST.PORT},GetDeviceInformation,{$HTTP_PASS}]</key>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <description>Серийный номер устройства любого по ONVIF</description>
+                    <inventory_link>SERIALNO_B</inventory_link>
+                    <applications>
+                        <application>
+                            <name>ONVIF</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.SerialNumber</params>
+                        </step>
+                        <step>
+                            <type>NOT_MATCHES_REGEX</type>
+                            <params>XPath set is empty</params>
+                        </step>
+                        <step>
+                            <type>NOT_MATCHES_REGEX</type>
+                            <params>-:1: parser error</params>
+                        </step>
+                        <step>
+                            <type>NOT_MATCHES_REGEX</type>
+                            <params>-:2: parser error</params>
+                        </step>
+                        <step>
+                            <type>NOT_MATCHES_REGEX</type>
+                            <params>Traceback</params>
+                        </step>
+                        <step>
+                            <type>NOT_MATCHES_REGEX</type>
+                            <params>False</params>
+                        </step>
+                    </preprocessing>
+                </item>
+                <item>
+                    <name>SerNumber</name>
+                    <type>EXTERNAL</type>
+                    <key>keno.curl[{HOST.CONN}, {$HOST.PORT}, bla-bla-bla]</key>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <description>Серийный номер устройства Keno</description>
+                    <applications>
+                        <application>
+                            <name>General</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>JSONPATH</type>
+                            <params>$.data.sSerialNumber</params>
+                        </step>
+                        <step>
+                            <type>TRIM</type>
+                            <params>&quot;Login to \(.*\)&quot;</params>
+                        </step>
+                        <step>
+                            <type>NOT_MATCHES_REGEX</type>
+                            <params>XPath set is empty</params>
+                        </step>
+                        <step>
+                            <type>NOT_MATCHES_REGEX</type>
+                            <params>-:1: parser error</params>
+                        </step>
+                    </preprocessing>
+                </item>
+                <item>
+                    <name>SNMP agent availability</name>
+                    <type>INTERNAL</type>
+                    <key>zabbix[host,snmp,available]</key>
+                    <history>7d</history>
+                    <applications>
+                        <application>
+                            <name>Status</name>
+                        </application>
+                    </applications>
+                    <valuemap>
+                        <name>zabbix.host.available</name>
+                    </valuemap>
+                    <triggers>
+                        <trigger>
+                            <expression>{max({$SNMP.TIMEOUT})}=0</expression>
+                            <name>No SNMP data collection</name>
+                            <opdata>Current state: {ITEM.LASTVALUE1}</opdata>
+                            <priority>WARNING</priority>
+                            <description>SNMP is not available for polling. Please check device connectivity and SNMP settings.</description>
+                            <dependencies>
+                                <dependency>
+                                    <name>Unavailable by ICMP ping</name>
+                                    <expression>{Security Cameras - AllCamers:icmpping.max(#3)}=0</expression>
+                                </dependency>
+                            </dependencies>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+            <httptests>
+                <httptest>
+                    <name>RTSP Check</name>
+                    <application>
+                        <name>Video Stream</name>
+                    </application>
+                    <delay>5s</delay>
+                    <attempts>10</attempts>
+                    <agent>Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.104 Safari/537.36</agent>
+                    <status>DISABLED</status>
+                    <authentication>BASIC</authentication>
+                    <http_user>{$RTSP_USER}</http_user>
+                    <http_password>{$RTSP_PASS}</http_password>
+                    <steps>
+                        <step>
+                            <name>Check if RTSP is Active</name>
+                            <url>rtsp://{$RTSP_USER}:{$RTSP_PASS}@{HOST.IP}:554/Streaming/Channels/102</url>
+                            <query_fields>
+                                <query_field>
+                                    <name>transportmode</name>
+                                    <value>unicast</value>
+                                </query_field>
+                                <query_field>
+                                    <name>profile</name>
+                                    <value>Profile_2</value>
+                                </query_field>
+                            </query_fields>
+                            <follow_redirects>NO</follow_redirects>
+                        </step>
+                    </steps>
+                </httptest>
+                <httptest>
+                    <name>RTSP CheckKeno</name>
+                    <application>
+                        <name>Video Stream</name>
+                    </application>
+                    <delay>5s</delay>
+                    <attempts>10</attempts>
+                    <agent>Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.104 Safari/537.36</agent>
+                    <status>DISABLED</status>
+                    <authentication>BASIC</authentication>
+                    <http_user>admin</http_user>
+                    <steps>
+                        <step>
+                            <name>Check if RTSP is Active</name>
+                            <url>rtsp://10.10.14.62/ch01_sub.264</url>
+                            <query_fields>
+                                <query_field>
+                                    <name>ptype</name>
+                                    <value>tcp</value>
+                                </query_field>
+                            </query_fields>
+                            <follow_redirects>NO</follow_redirects>
+                        </step>
+                    </steps>
+                </httptest>
+            </httptests>
+            <macros>
+                <macro>
+                    <macro>{$HOST.PORT}</macro>
+                    <value>80</value>
+                    <description>Порт подключения</description>
+                </macro>
+                <macro>
+                    <macro>{$HTTP_PASS}</macro>
+                    <value>Vkxv1d30</value>
+                </macro>
+                <macro>
+                    <macro>{$HTTP_USER}</macro>
+                    <value>admin</value>
+                </macro>
+                <macro>
+                    <macro>{$RTSP_PASS}</macro>
+                    <value>Vkxv1d30</value>
+                </macro>
+                <macro>
+                    <macro>{$RTSP_USER}</macro>
+                    <value>admin</value>
+                </macro>
+                <macro>
+                    <macro>{$SNMP.TIMEOUT}</macro>
+                    <value>5m</value>
+                </macro>
+            </macros>
+        </template>
+    </templates>
+    <value_maps>
+        <value_map>
+            <name>zabbix.host.available</name>
+            <mappings>
+                <mapping>
+                    <value>0</value>
+                    <newvalue>not available</newvalue>
+                </mapping>
+                <mapping>
+                    <value>1</value>
+                    <newvalue>available</newvalue>
+                </mapping>
+                <mapping>
+                    <value>2</value>
+                    <newvalue>unknown</newvalue>
+                </mapping>
+            </mappings>
+        </value_map>
+    </value_maps>
+</zabbix_export>
