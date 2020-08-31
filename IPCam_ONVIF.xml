@@ -326,7 +326,7 @@
                 </macro>
                 <macro>
                     <macro>{$HTTP_PASS}</macro>
-                    <value>Vkxv1d30</value>
+                    <value>000000</value>
                 </macro>
                 <macro>
                     <macro>{$HTTP_USER}</macro>
@@ -334,7 +334,7 @@
                 </macro>
                 <macro>
                     <macro>{$RTSP_PASS}</macro>
-                    <value>Vkxv1d30</value>
+                    <value>000000</value>
                 </macro>
                 <macro>
                     <macro>{$RTSP_USER}</macro>
